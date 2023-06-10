@@ -1,0 +1,165 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Diapres | Early Diagnosis DataTable</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+    <meta name="author" content="Phoenixcoded" />
+    
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+
+    <!-- vendor css -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+    
+
+</head>
+<body class="">
+	<!-- [ Pre-loader ] start -->
+	<div class="loader-bg">
+		<div class="loader-track">
+			<div class="loader-fill"></div>
+		</div>
+	</div>
+	<!-- [ Pre-loader ] End -->
+	<!-- [ navigation menu ] start -->
+    {% include 'basecomponent/navbar.html' %}
+	<!-- [ navigation menu ] end -->
+	<!-- [ Header ] start -->
+	{% include 'basecomponent/topnavbar.html' %}
+	<!-- [ Header ] end -->
+	
+	
+
+<!-- [ Main Content ] start -->
+<section class="pcoded-main-container">
+    <div class="pcoded-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Early Diagnosis Patient Table</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="{%url 'table' %}">Patient Lists</a></li>
+                            <li class="breadcrumb-item"><a href="#!">Patient Table</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <!-- [ Main Content ] start -->
+        <div class="row">
+            <!-- [ stiped-table ] start -->
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-header">
+                    </i></a>
+                    <div class="card-header-right">
+                        <form action="{%url 'table'%}" method="GET">
+                            <input name="q" type="text" class="form-control border-1 shadow-none" placeholder="Search hear">
+                        </form>
+                    </div>
+                    <div class="card-header-left">
+                        <a class="btn btn-success btn-sm" href="{% url 'get-ealry-report'%}">
+                            <i class="fas fa-file">
+                            </i>
+                            CSV File
+                        </a>
+                    </div>
+                    </div>                
+                    <div class="card-body table-border-style">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>ID Number</th>
+                                        <th>Patient Name</th>
+                                        <th>Age</th>
+                                        <th>Gender</th>
+                                        <th>Status</th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                {% for each in patient_list %}
+                                <tbody>
+                                    <tr>
+                                        <td>{{each.id}}</td>
+                                        <td>{{each.id_number}}</td>
+                                        <td>{{each.name}}</td>
+                                        <td>{{each.age}}</td>
+                                        <td>{{each.gender}}</td>
+                                        <td>
+                                            {%if each.status == "Positive"%}
+                                            <strong class="text-c-red">{{each.status}}</strong>
+                                            {%else%}
+                                            <strong class="text-c-green">{{each.status}}</strong>
+                                            {%endif%}
+                                        </td>
+                                        <td class="text-center">
+                                            <a class="btn btn-primary btn-sm" href="{% url 'single-data' each.id %}">
+                                                <i class="fas fa-folder">
+                                                </i>
+                                                View
+                                            </a>
+                                            <div id="exampleModalCenter" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalCenterTitle">Delete Record</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p class="mb-0">Do you want to delete {{each.name}}'s record?</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <a href="{% url 'del-early-patient' each.id %}" type="button" class="btn  btn-primary">Yes</a>
+                                                            <a type="button" class="btn  btn-secondary" data-dismiss="modal">No</a>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModalCenter">
+                                                <i class="fas fa-trash">
+                                                </i>
+                                                Delete
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                {%endfor%}
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        {% include 'basecomponent/page.html' with page=patient_list %}
+                    </div>
+                </div>
+            </div>
+            <!-- [ stiped-table ] end -->
+        </div>
+        <!-- [ Main Content ] end -->
+    </div>
+</section>
+
+
+     <!-- Required Js -->
+     <script src="{% static 'js/vendor-all.min.js' %}"></script>
+     <script src="{% static 'js/plugins/bootstrap.min.js' %}"></script>
+     <script src="{% static 'js/pcoded.min.js' %}"></script>
+
+
+
+</body>
+</html>

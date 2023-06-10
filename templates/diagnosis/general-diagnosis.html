@@ -1,0 +1,160 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Diapres | General Diagnosis</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+    <meta name="author" content="Phoenixcoded" />
+    <!-- Favicon icon -->
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+
+    <!-- vendor css -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+    
+
+</head>
+<body class="">
+	<!-- [ Pre-loader ] start -->
+	<div class="loader-bg">
+		<div class="loader-track">
+			<div class="loader-fill"></div>
+		</div>
+	</div>
+	<!-- [ Pre-loader ] End -->
+	<!-- [ navigation menu ] start -->
+    {% include 'basecomponent/navbar.html' %}
+	<!-- [ navigation menu ] end -->
+	<!-- [ Header ] start -->
+    {% include 'basecomponent/topnavbar.html' %}
+	<!-- [ Header ] end -->
+	
+	
+
+<!-- [ Main Content ] start -->
+<section class="pcoded-main-container">
+    <div class="pcoded-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">General Diagnosis</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="#!">Tests</a></li>
+                            <li class="breadcrumb-item"><a href="#!">General Diagnosis</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <!-- [ Main Content ] start -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Patient Information</h5>
+                    </div>
+                    <div class="card-body">
+                        <form action="General-Diagnosis">
+                            {%csrf_token%}
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="floating-label" for="Email">No. of Pregnancies</label>
+                                        <input type="text" class="form-control" name="n1"  placeholder="3">
+                                        <small>{{va1error}}</small>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="floating-label" for="Text">Glucose Level</label>
+                                        <input type="text" class="form-control" name="n2" placeholder="28">
+                                        <small>{{va2error}}</small>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="floating-label" for="password">Blood Pressure</label>
+                                        <input type="text" class="form-control" name="n3" placeholder="28">
+                                        <small>{{va3error}}</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="floating-label" for="Email">Skin Thickness</label>
+                                        <input type="text" class="form-control" name="n4" placeholder="28">
+                                        <small>{{va4error}}</small>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="floating-label" for="Text">Insulin</label>
+                                        <input type="text" class="form-control" name="n5" placeholder="28">
+                                        <small>{{va5error}}</small>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="floating-label" for="password">BMI</label>
+                                        <input type="text" class="form-control" name="n6" placeholder="28">
+                                        <small>{{va6error}}</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="floating-label" for="Email">Pedigree Function</label>
+                                        <input type="text" class="form-control" name="n7" placeholder="28">
+                                        <small>{{va7error}}</small>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="floating-label" for="Text">Age</label>
+                                        <input type="text" class="form-control" name="n8" placeholder="28">
+                                        <small>{{va8error}}</small>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="floating-label" for="password">Result</label>
+                                        <span class="form-control">{{result2}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn  btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ Main Content ] end -->
+
+    </div>
+</section>
+
+     <!-- Required Js -->
+     <script src="{% static 'js/vendor-all.min.js' %}"></script>
+     <script src="{% static 'js/plugins/bootstrap.min.js' %}"></script>
+     <script src="{% static 'js/pcoded.min.js' %}"></script>
+
+ 
+
+
+</body>
+
+</html>

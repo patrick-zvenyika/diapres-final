@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Diapres | Chat</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+    <meta name="author" content="Phoenixcoded" />
+    <!-- Favicon icon -->
+    <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">
+
+    <!-- vendor css -->
+    <link rel="stylesheet" href="/static/css/style.css">
+
+
+</head>
+
+<body class="">
+    <!-- [ Pre-loader ] start -->
+    <div class="loader-bg">
+        <div class="loader-track">
+            <div class="loader-fill"></div>
+        </div>
+    </div>
+    <!-- [ Pre-loader ] End -->
+    <!-- [ navigation menu ] start -->
+    {% include 'basecomponent/navbar.html' %}
+    <!-- [ navigation menu ] end -->
+    <!-- [ Header ] start -->
+    {% include 'basecomponent/topnavbar.html' %}
+    <!-- [ Header ] end -->
+
+
+
+    <!-- [ Main Content ] start -->
+    <div class="pcoded-main-container">
+        <div class="pcoded-content">
+            <!-- [ breadcrumb ] start -->
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <div class="page-header-title">
+                                <h5 class="m-b-10">Start Chat</h5>
+                            </div>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{% url 'dashboard' %}"><i class="feather icon-home"></i></a></li>
+                                <li class="breadcrumb-item"><a href="#!">Chat</a></li>
+                                <li class="breadcrumb-item"><a href="#!">Start Chat</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ breadcrumb ] end -->
+            <!-- [ Main Content ] start -->
+            <div class="row">
+                <div class="col-lg-8 col-md-12">
+                    <div class="card chat-card minimize-card">
+                        <div class="card-header">
+                            <h5><small>{{seluser.username}}</small></h5>
+                            
+                            
+                            <div class="card-header-right">
+                                <div class="btn-group card-option">
+                                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="feather icon-more-horizontal"></i>
+                                </button>
+                                    <ul class="list-unstyled card-option dropdown-menu dropdown-menu-right">
+                                        <li class="dropdown-item full-card"><a href="#!"><span><i class="feather icon-maximize"></i> maximize</span><span style="display:none"><i class="feather icon-minimize"></i> Restore</span></a></li>
+                                        <li class="dropdown-item minimize-card"><a href="#!"><span><i class="feather icon-minus"></i> collapse</span><span style="display:none"><i class="feather icon-plus"></i> expand</span></a></li>
+                                        <li class="dropdown-item reload-card"><a href="#!"><i class="feather icon-refresh-cw"></i> reload</a></li>
+                                        <li class="dropdown-item close-card"><a href="#!"><i class="feather icon-trash"></i> remove</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body" id="chat-body">
+
+							{%for chat in chats %}
+                            {% if chat.msg_sender == prof and chat.msg_receiver == user %}
+                            <div class="row m-b-20 received-chat">
+                                
+                                <div class="col-auto p-r-0">
+                                    <img src="/static/images/avatar.svg" alt="user image" class="img-radius wid-40">
+                                </div>
+                                
+                                <div class="col">
+                                    <div class="msg">
+                                        <p class="m-b-0">{{chat}}</p>
+                                        {% if chat.pdf %}
+                                        <a href="{{chat.pdf.url}}" class="btn btn-light" target="_blank"><i class="feather icon-paperclip"></i><small>{{chat.pdf.name}}</small></a>
+                                        {% else %}
+
+                                        {%endif%}
+                                       
+                                    </div>
+                                    
+                                    <p class="text-muted m-b-0"><i class="fa fa-clock-o m-r-10"></i>{{chat.created_at|timesince}}</p>
+                                </div>
+                            </div>
+
+
+
+                            {% elif  chat.msg_sender == user and chat.msg_receiver ==  prof%}
+                            <div class="row m-b-20 send-chat">
+                                <div class="col">
+                                    <div class="msg">
+                                        <p class="m-b-0">{{chat}}</p>
+                                        {% if chat.pdf %}
+                                        <a href="{{chat.pdf.url}}" target="_blank"><i class="feather icon-paperclip"></i><small>{{chat.pdf.name}}</small></a>
+                                        {% else %}
+                                            <span><small>.....</small></span>
+                                        {%endif%}
+                                    </div>
+                                    <p class="text-muted m-b-0"><i class="fa fa-clock-o m-r-10"></i>{{chat.created_at|timesince}}</p>
+                                </div>
+                                <div class="col-auto p-l-0">
+                                    <img src="/static/images/avatar.svg" alt="user image" class="img-radius wid-40">
+                                </div>
+                            </div>
+                            {%endif%}
+							{%endfor%}
+
+                            <div class="input-group m-t-15">
+								<form   class="input-group-append input-group m-t-15" method="POST" id="myform"  enctype="multipart/form-data">
+								    {% csrf_token %}
+									<div class="input-group-append">
+										<input type="file" id="inputGroupFile01" name="pdf">
+									</div>
+                                    <input type="text" class="form-control" name="body" placeholder="Send message">
+									
+									<div class="input-group-append">
+										
+										<button class="btn btn-primary" type="submit">
+										<i class="feather icon-message-circle"></i>
+									</button>
+									</div>
+								</form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                <div class="col-lg-4 col-md-12">
+                    <div class="card table-card">
+                        <div class="card-header">
+                            <h5>Active Users</h5>
+                            <div class="card-header-right">
+                                <div class="btn-group card-option">
+                                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="feather icon-more-horizontal"></i>
+                                    </button>
+                                    <ul class="list-unstyled card-option dropdown-menu dropdown-menu-right">
+                                        <li class="dropdown-item full-card"><a href="#!"><span><i class="feather icon-maximize"></i> maximize</span><span style="display:none"><i class="feather icon-minimize"></i> Restore</span></a></li>
+                                        <li class="dropdown-item minimize-card"><a href="#!"><span><i class="feather icon-minus"></i> collapse</span><span style="display:none"><i class="feather icon-plus"></i> expand</span></a></li>
+                                        <li class="dropdown-item reload-card"><a href="#!"><i class="feather icon-refresh-cw"></i> reload</a></li>
+                                        <li class="dropdown-item close-card"><a href="#!"><i class="feather icon-trash"></i> remove</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-hover mb-0">
+                                    <tbody>
+                                        {% for user in users %}
+                                        <tr>
+                                            <td>
+                                                <div class="d-inline-block align-middle">
+                                                    <img src="/static/images/avatar.svg" alt="user image" class="img-radius wid-40 align-top m-r-15">
+                                                    <div class="d-inline-block">
+                                                        <h6 class="text-muted m-b-0"><a href="{% url 'start-chat' user.id %}"><small>{{user.username}}</small></a></h6>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+    </div>
+
+
+     <!-- Required Js -->
+     <script src="/static/js/vendor-all.min.js"></script>
+     <script src="/static/js/plugins/bootstrap.min.js"></script>
+     <script src="/static/js/pcoded.min.js"></script>
+ 
+     <!-- Apex Chart -->
+     <script src="/static/js/plugins/apexcharts.min.js"></script>
+     <script src="/static/js/pages/chart-apex.js"></script>
+ 
+     <!-- custom-chart js -->
+     <script src="/static/libraries/vue.js"></script>
+     <script src="/static/libraries/communications.js"></script>
+
+
+
+</body>
+
+</html>

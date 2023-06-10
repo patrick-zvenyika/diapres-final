@@ -1,0 +1,206 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Diapres | General Diagnosis</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+    <meta name="author" content="Phoenixcoded" />
+    <!-- Favicon icon -->
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+
+    <!-- vendor css -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+    
+
+</head>
+<body class="">
+	<!-- [ Pre-loader ] start -->
+	<div class="loader-bg">
+		<div class="loader-track">
+			<div class="loader-fill"></div>
+		</div>
+	</div>
+	<!-- [ Pre-loader ] End -->
+	<!-- [ navigation menu ] start -->
+    {% include 'basecomponent/navbar.html' %}
+	<!-- [ navigation menu ] end -->
+	<!-- [ Header ] start -->
+    {% include 'basecomponent/topnavbar.html' %}
+	<!-- [ Header ] end -->
+	
+	
+
+<!-- [ Main Content ] start -->
+<section class="pcoded-main-container">
+    <div class="pcoded-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">General Diagnosis</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="#!">Tests</a></li>
+                            <li class="breadcrumb-item"><a href="#!">General Diagnosis</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <!-- [ Main Content ] start -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Patient Information</h5>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="floating-label" for="Email">Name</label>
+                                        <input type="text" class="form-control" name="name" placeholder="Chris Nyati">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="floating-label" for="Text">ID Number</label>
+                                        <input type="text" class="form-control" name="name2" placeholder="22 2021.....">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="floating-label" for="password">Address</label>
+                                        <input type="text" class="form-control" name="address" placeholder="2804 Mhizha St....">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="floating-label" for="Email">Contact</label>
+                                        <input type="contact" class="form-control" name="contact" placeholder="263 78.....">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="floating-label" for="Email">Gender</label>
+                                        <select class="form-control" name="gender">
+                                            <option>Female</option>
+                                            <option>Male</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="floating-label" for="Email">No. of Pregnancies</label>
+                                        <input type="text" class="form-control" name="pregnancies">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="floating-label" for="Text">Glucose Level</label>
+                                        <input type="text" class="form-control" name="glucose">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="floating-label" for="password">Blood Pressure</label>
+                                        <input type="text" class="form-control" name="bp">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="floating-label" for="Email">Skin Thickness</label>
+                                        <input type="text" class="form-control" name="skin">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="floating-label" for="Text">Insulin</label>
+                                        <input type="text" class="form-control" name="insulin">
+                                    </div>
+                                </div>
+                                
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="floating-label" for="password">BMI</label>
+                                        <input type="text" class="form-control" name="bmi">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="floating-label" for="Email">Height</label>
+                                        <input type="text" class="form-control" name="height">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="floating-label" for="Text">Mass</label>
+                                        <input type="text" class="form-control" name="mass">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="floating-label" for="Email">Pedigree Function</label>
+                                        <input type="text" class="form-control" name="dpf">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="floating-label" for="Text">Age</label>
+                                        <input type="text" class="form-control" name="age">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="floating-label" for="Email">Result</label>
+                                        <select class="form-control" name="outcome">
+                                            <option>Negative</option>
+                                            <option>Positive</option>
+                                        </select>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                            <button type="submit" class="btn  btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ Main Content ] end -->
+
+    </div>
+</section>
+
+     <!-- Required Js -->
+     <script src="{% static 'js/vendor-all.min.js' %}"></script>
+     <script src="{% static 'js/plugins/bootstrap.min.js' %}"></script>
+     <script src="{% static 'js/pcoded.min.js' %}"></script>
+
+ 
+
+
+</body>
+
+</html>

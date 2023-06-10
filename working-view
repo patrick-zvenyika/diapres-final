@@ -1,0 +1,37 @@
+from django.shortcuts import render,redirect
+from .models import *
+from .forms import ChatMessageForm
+# Create your views here.
+def Index(request):
+    user = request.user.profile
+    queryset = Profile.objects.all()
+    context = {
+        'user':user,
+        'friends':queryset
+       
+    }
+    return render(request, 'index.html', context)
+
+
+def detail(request,pk):
+    friend = Profile.objects.get(id=pk)    
+    user = request.user.profile
+    profile = Profile.objects.get(id=friend.id)
+    chats = ChatMessage.objects.all()
+    form = ChatMessageForm()
+    if request.method == 'POST':
+        form = ChatMessageForm(request.POST)
+        if form.is_valid():
+            chat_message = form.save(commit=False)
+            chat_message.msg_sender = user
+            chat_message.msg_receiver = profile
+            chat_message.save()
+            return redirect('detail', pk=friend.id)
+    context = {
+        'friend':friend,
+        'form':form,
+        'user':user,
+        'profile':profile,
+        'chats':chats
+    }
+    return render(request, 'detail.html', context)

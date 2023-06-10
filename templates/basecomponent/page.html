@@ -1,0 +1,14 @@
+<div class="table-pagination">
+    <div class="text-center justify-between">
+      <div class="btn">
+        {%for p in patient_list.paginator.page_range %}
+        {%if patient_list.number == p %}
+        <a href="?page={{p}}" class="btn btn-primary btn-sm"> <i class="fa fa-chevron-left m-l-5"></i></a>
+        <span><strong><a class="text-c-green">{{p}}</a></strong></span>
+        {%else%}
+        <a href="?page={{p}}" class="btn btn-primary btn-sm"> <i class="fa fa-chevron-right m-l-5"></i></a>
+        {%endif%}
+        {%endfor%}
+      </div>
+    </div>
+  </div>
